@@ -1,6 +1,8 @@
-node-smushit
+This is a fork of the node-smushit to allow the use of file buffers as well as local file paths. The usage from code has been altered to take an object instead of parameters
 =====
 
+node-smushit
+=====
 using smush.it service to optimize image(s) in node
 
 How to use?
@@ -33,7 +35,6 @@ smushit image-file-name -o new-file-name
  * change the default service.
  * by default, `node-smushit` use the !Yahoo smushi.it service, you can create your owne smush service.
  * If you are in China, you will know how important to create your own smush.it service. 
- * FUCK THE GFW & POOR NETWORK SPEED.
  */
 
 // view all config
