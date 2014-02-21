@@ -1,4 +1,4 @@
-This is a fork of the node-smushit to allow the use of file buffers as well as local file paths. The usage from code has been altered to take an object instead of parameters
+This is a fork of the node-smushit to allow the use of file buffers as well as local file paths.
 =====
 
 node-smushit
