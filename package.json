@@ -16,7 +16,7 @@
   "keywords": ["image", "compressor", "compression"],
   "directories" : { "lib" : "./lib" },
   "bin" : { "smushit" : "./cli.js" },
-  "main" : "smushit",
+  "main" : "smushitClient",
   "engines": { "node": ">= 0.8.0" },
   "licenses": [
 	{
