@@ -118,32 +118,37 @@ exports.smushit = function(inputs, settings){
 		if(settings.onItemStart){
 			settings.onItemStart(item);
 		}
-		smushit.smushit(item, function(response){
-			reports.items.push(response);
-			try{
-				response = JSON.parse(response);
-			}catch(err){
-				log("item: " + item + " response:" + response);
-				onItemFinished(err, item, response);
-				return;
-			}
-			if(response.error){
-				log("item: " + item + " error: " + response.error);
-				onItemFinished(null, item, response);
-				return;
-			}
-			reports.ok += 1;
-			log("item: " + item + " saving: " + response.percent + "%");
-			
-			saveBinary(response.dest, settings.output || item, function(e){
-				if(e){
-					log("Fail to save image at: " + item);
+		smushit.smushit({
+			"filename": item, 
+			"done": function(response){
+				reports.items.push(response);
+				try{
+					response = JSON.parse(response);
+				} catch(err){
+					log("item: " + item + " response:" + response);
+					onItemFinished(err, item, response);
+					return;
 				}
-				onItemFinished(e, item, response);
-			});
-		}, function(error){
-			log(error.message || error.msg);
-			onItemFinished(error, item);
-		}, settings.service);
+				if (response.error) {
+					log("item: " + item + " error: " + response.error);
+					onItemFinished(null, item, response);
+					return;
+				}
+				reports.ok += 1;
+				log("item: " + item + " saving: " + response.percent + "%");
+				
+				saveBinary(response.dest, settings.output || item, function(e){
+					if (e){
+						log("Fail to save image at: " + item);
+					}
+					onItemFinished(e, item, response);
+				});
+			}, 
+			"fail": function(error){
+				log(error.message || error.msg);
+				onItemFinished(error, item);
+			}, 
+			"customService": settings.service
+		});
 	});
 };

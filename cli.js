@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var smushit = require('./smushit')
+var smushit = require('./smushitClient')
   , util = require('util')
   , Persist = require('./lib/persist').Persist
   , persist = new Persist(__dirname + '/persist.json');
